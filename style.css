@@ -55,7 +55,11 @@ nav {
     padding: 20px;
     max-width:1600px;
 }
-    
+ .item {
+    position: relative;
+    overflow: hidden;
+ } 
+ 
 .item1 { grid-area: 1 / 1 / 4 / 2; }
 .item2 { grid-area: 4 / 1 / 5 / 3; }
 .item3 { grid-area: 3 / 2 / 4 / 3; }
@@ -73,6 +77,27 @@ img {
     object-fit: cover;
     display: block;
     cursor:pointer;
+    transition: transform 0.3s ease;
+}
+
+.item:hover img {
+    transform: scale(1.05);
+}
+
+.caption {
+    position: absolute;
+    bottom:-100%;
+    left:10px;
+    background-color: rgba(0,0,0,0.8);
+    color: white;
+    padding:5px 10px;
+    border-radius: 3px;
+    font-size: 14px;
+    transition: bottom 0.3s ease;
+}
+
+.item:hover .caption{
+    bottom:0;
 }
 
 .modal {
@@ -88,10 +113,20 @@ img {
     z-index:101;
 }
 
-    .modal img  {
+    .modal img {
         max-width:90% ;
         max-height:90% ;
         object-fit: cover;
+        transform: scale(0.7);
+        opacity: 0;
+        transition: 
+            transform 0.5s ease-in-out,
+            opacity 0.5s ease-in-out;
+    }
+
+    .modal img.reveal {
+        transform: scale(1);
+        opacity: 1;
     }
 /* Footer  */
 footer {

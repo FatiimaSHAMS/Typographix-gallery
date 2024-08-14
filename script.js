@@ -1,6 +1,32 @@
-// Random Image Unsplash
+//Loading Animation
+//Function to generate a random color 
+function getRandomColor(){
+  return '#' +Math.random().toString(16).slice(-6);
+}
+
+// Function to set random colors to the squares 
+function setRandomColors(){
+  document.querySelector('.color1').style.backgroundColor= getRandomColor();
+  document.querySelector('.color2').style.backgroundColor= getRandomColor();
+  document.querySelector('.color3').style.backgroundColor= getRandomColor();
+}
+
+// Initialize with random colors
+setRandomColors();
+
+// Continue to change colors every 2 seconds
+setInterval(setRandomColors, 2000);
+
+//Show loader for 3 seconds, then show content;
+setTimeout(() => {
+  document.querySelector('.loader-container').style.display='none';
+  document.querySelectorAll('.item').forEach(el => el.style.opacity='1');
+},3000);
+
+
+////////////// Random Image Unsplash///////////////////
 // Your Access Key
-const accessKey = 'lf6ZqihlE8h9ht3LXgZijUUFYlW0vUUfkKHUCt2eBUA';
+const accessKey = '-qIBzreQVuAFAZG0sSMxOvgkCBblmPRqn2Lm5ihWjXo';
 
 // Unsplash API URL to fetch 10 random photos
 const url = `https://api.unsplash.com/photos/random?query=abstract&count=10&client_id=${accessKey}`;
@@ -31,6 +57,7 @@ fetch(url)
   .catch(error => {
     console.error('Error fetching the images:', error);
   });
+////////////////////////////////////////////////////////////////
 
 // Allow for selection of image to trigger modal view 
 const items = document.querySelectorAll('.item');
